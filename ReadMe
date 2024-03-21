@@ -59,4 +59,4 @@ Submission Details
 * GitHub Repository: Each exercise will have its own repository or a well-organized single repository with clear separation between exercises. Include a README file with detailed explanations, setup instructions, and any assumptions or decisions made during development.
 * Code Quality: Ensure your code is clean, well-commented, and follows best practices for the tools and languages you're using.
 * Documentation: The README should not only guide users through setup and testing but also highlight any interesting technical choices, challenges faced, and how you addressed them.
-By following these guidelines, you'll create a comprehensive submission for these DevOps exercises that demonstrates your skills in backend development, containerization, CI/CD, cloud infrastructure, and configuration management..
+By following these guidelines, you'll create a comprehensive submission for these DevOps exercises that demonstrates your skills in backend development, containerization, CI/CD, cloud infrastructure, and configuration management.
