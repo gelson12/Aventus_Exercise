@@ -28,4 +28,5 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: gelsonm/aventus-app:latest  # Replace with your Docker Hub username and desired image name
+      
 
