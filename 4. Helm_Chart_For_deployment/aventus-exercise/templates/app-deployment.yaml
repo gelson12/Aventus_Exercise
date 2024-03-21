@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aventus-app
+spec:
+  selector:
+    matchLabels:
+      app: aventus-app
+  template:
+    metadata:
+      labels:
+        app: aventus-app
+    spec:
+      containers:
+      - name: aventus-app
+        image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+        ports:
+        - containerPort: 5000
+        env:
+        - name: SQLALCHEMY_DATABASE_URI
+          value: "postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@postgres/aventus_db"
+        envFrom:
+        - secretRef:
+            name: postgres-secret
