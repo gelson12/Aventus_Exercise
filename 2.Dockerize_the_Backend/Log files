@@ -1,0 +1,108 @@
+DATABASE CONTAINARAZATION
+ ls  
+Dockerfile  ReadMe  app.py  docker-compose.yml  requirements.txt
+ /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/2.Dockerize_the_Backend  docker-compose up --build
+
+Creating network "2dockerize_the_backend_default" with the default driver
+Creating volume "2dockerize_the_backend_postgres_data" with default driver
+Pulling db (postgres:13)...
+13: Pulling from library/postgres
+8a1e25ce7c4f: Already exists                                                                                       
+6b6401b333c3: Pull complete
+7c9372470a1e: Pull complete
+4ae493e65a47: Pull complete
+f17d302b6f87: Pull complete
+3248fbb63f73: Pull complete
+07ba9314959e: Pull complete
+1f63c21298f0: Pull complete
+0fbae5ab18ae: Pull complete
+42d18ba59afb: Pull complete
+35c82dfa888c: Pull complete
+fb0215199ac9: Pull complete
+8a76ff31f93d: Pull complete
+1cfd2ee46be1: Pull complete
+Digest: sha256:3840140f04b26432cd66de0e3a9a63dfc9fed70bb27e161c846b50fe754a9893
+Status: Downloaded newer image for postgres:13
+Building web
+[+] Building 14.4s (10/10) FINISHED                                                                 docker:default
+ => [internal] load build definition from Dockerfile                                                          0.3s
+ => => transferring dockerfile: 612B                                                                          0.1s 
+ => [internal] load metadata for docker.io/library/python:3.8-slim                                            1.0s
+ => [auth] library/python:pull token for registry-1.docker.io                                                 0.0s
+ => [internal] load .dockerignore                                                                             0.0s
+ => => transferring context: 2B                                                                               0.0s 
+ => [1/4] FROM docker.io/library/python:3.8-slim@sha256:95bfecec648356cdd0b28c8b00ce00009baff10c99d1126a82d1  0.0s 
+ => [internal] load build context                                                                             0.1s 
+ => => transferring context: 595B                                                                             0.0s 
+ => CACHED [2/4] WORKDIR /usr/src/app                                                                         0.0s
+ => [3/4] COPY . .                                                                                            2.4s 
+ => [4/4] RUN pip install --no-cache-dir -r requirements.txt                                                  9.9s
+ => exporting to image                                                                                        0.3s
+ => => exporting layers                                                                                       0.3s
+ => => writing image sha256:7dc11cb7a91467d2c5c7cd9e5ca16c0dc94aa73300da0c8fea20d3734fffdccd                  0.0s
+ => => naming to docker.io/library/2dockerize_the_backend_web                                                 0.0s 
+Creating 2dockerize_the_backend_db_1 ... done
+Creating 2dockerize_the_backend_web_1 ... done
+Attaching to 2dockerize_the_backend_db_1, 2dockerize_the_backend_web_1
+db_1   | The files belonging to this database system will be owned by user "postgres".
+db_1   | This user must also own the server process.
+db_1   |
+db_1   | The database cluster will be initialized with locale "en_US.utf8".
+db_1   | The default database encoding has accordingly been set to "UTF8".
+db_1   | The default text search configuration will be set to "english".
+db_1   |
+db_1   | Data page checksums are disabled.
+db_1   |
+db_1   | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db_1   | creating subdirectories ... ok
+db_1   | selecting dynamic shared memory implementation ... posix
+db_1   | selecting default max_connections ... 100
+db_1   | selecting default shared_buffers ... 128MB
+db_1   | selecting default time zone ... Etc/UTC
+db_1   | creating configuration files ... ok
+db_1   | running bootstrap script ... ok
+db_1   | performing post-bootstrap initialization ... ok
+web_1  |  * Serving Flask app 'app.py'
+web_1  |  * Debug mode: off
+web_1  | WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+web_1  |  * Running on all addresses (0.0.0.0)
+web_1  |  * Running on http://127.0.0.1:5000
+web_1  |  * Running on http://172.20.0.3:5000
+web_1  | Press CTRL+C to quit
+db_1   | syncing data to disk ... initdb: warning: enabling "trust" authentication for local connections
+db_1   | You can change this by editing pg_hba.conf or using the option -A, or
+db_1   | --auth-local and --auth-host, the next time you run initdb.
+db_1   | ok
+db_1   |
+db_1   |
+db_1   | Success. You can now start the database server using:
+db_1   |
+db_1   |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db_1   |
+db_1   | waiting for server to start....2024-03-21 09:26:34.043 UTC [48] LOG:  starting PostgreSQL 13.14 (Debian 13.14-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db_1   | 2024-03-21 09:26:34.048 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"       
+db_1   | 2024-03-21 09:26:34.060 UTC [49] LOG:  database system was shut down at 2024-03-21 09:26:33 UTC
+db_1   | 2024-03-21 09:26:34.067 UTC [48] LOG:  database system is ready to accept connections
+db_1   |  done
+db_1   | server started
+db_1   | CREATE DATABASE
+db_1   |
+db_1   |
+db_1   | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+db_1   |
+db_1   | 2024-03-21 09:26:34.448 UTC [48] LOG:  received fast shutdown request
+db_1   | waiting for server to shut down....2024-03-21 09:26:34.452 UTC [48] LOG:  aborting any active transactions
+db_1   | 2024-03-21 09:26:34.454 UTC [48] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+db_1   | 2024-03-21 09:26:34.455 UTC [50] LOG:  shutting down
+db_1   | 2024-03-21 09:26:34.479 UTC [48] LOG:  database system is shut down
+db_1   |  done
+db_1   | server stopped
+db_1   |
+db_1   | PostgreSQL init process complete; ready for start up.
+db_1   |
+db_1   | 2024-03-21 09:26:34.581 UTC [1] LOG:  starting PostgreSQL 13.14 (Debian 13.14-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db_1   | 2024-03-21 09:26:34.583 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db_1   | 2024-03-21 09:26:34.583 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db_1   | 2024-03-21 09:26:34.591 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db_1   | 2024-03-21 09:26:34.601 UTC [63] LOG:  database system was shut down at 2024-03-21 09:26:34 UTC
+db_1   | 2024-03-21 09:26:34.611 UTC [1] LOG:  database system is ready to accept connections

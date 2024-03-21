@@ -1,0 +1,62 @@
+DEVOPS Exercise Statement 1
+Backend with Two Endpoints
+
+PLAN
+1. Going to Setup a Python project with Flask(or FastAPI) by:
+
+    * Creating Flask webframework to /populate and /delete endpoints.
+    * Use SQLAlchemy for ORM with PostgreSQL.
+    * The /populate endpoint will generates random data and inserts it into the database.
+    * The /delete endpoint will deletes all data from the database.
+
+2. Dockerize the Backend
+
+    * Create a Dockerfile and Docker-compose that sets up a Python environment, installs dependencies, and runs the backend application.
+    * Use a multi-stage build for smaller image size if possible.
+
+3. GitHub CI for Docker Image
+
+* Set up GitHub Actions workflow to build and push the Docker image to Docker Hub or GitHub Container Registry upon new commits to the main branch.
+
+4. Helm Chart for Deployment
+
+* Create a Helm chart that includes:
+    * Deployment for the backend application.
+    * A PostgreSQL database deployment or StatefulSet, including PVCs for data persistence.
+    * Configuration to initialize the database schema on first run.
+    * A deployment for a web-based PostgreSQL UI (e.g., PGAdmin) accessible securely.
+* Include values.yaml for customizable deployment options.
+
+5. Instructions
+
+* Document detailed installation instructions for the Helm chart in the repository's README, including how to test the service after deployment.
+
+Terraform Code for AWS
+* Share Terraform code or a module that demonstrates usage of the AWS provider. This could include resources like EC2 instances, S3 buckets, or IAM roles, showing best practices in defining resources, utilizing variables, outputs, and modules.
+
+
+DEVOPS Exercise Statement 2
+
+Infrastructure as Code (IaC) Using Terraform
+
+1. Terraform Setup for AWS Resources
+
+    * Define a Python script that generates a file with random data.
+    * Use AWS Lambda to run this script, packaging the Python script within the Lambda deployment package.
+    * Trigger the Lambda function through AWS API Gateway, set up with a custom domain.
+    * Configure the S3 bucket in a separate AWS account, handling cross-account permissions correctly for Lambda to write to it.
+
+2. GitHub Actions for Deployment
+
+    * Create a CI/CD pipeline using GitHub Actions to deploy the Terraform code.
+    * Ensure the pipeline includes steps for Terraform initialization, validation, plan, and apply.
+    * Use secrets for sensitive information like AWS credentials.
+
+Helm Charts Sharing
+* Provide examples of Helm charts you've developed, showcasing how you structure charts, manage dependencies, configure templates, and utilize values for deployment customization.
+
+Submission Details
+* GitHub Repository: Each exercise will have its own repository or a well-organized single repository with clear separation between exercises. Include a README file with detailed explanations, setup instructions, and any assumptions or decisions made during development.
+* Code Quality: Ensure your code is clean, well-commented, and follows best practices for the tools and languages you're using.
+* Documentation: The README should not only guide users through setup and testing but also highlight any interesting technical choices, challenges faced, and how you addressed them.
+By following these guidelines, you'll create a comprehensive submission for these DevOps exercises that demonstrates your skills in backend development, containerization, CI/CD, cloud infrastructure, and configuration management.

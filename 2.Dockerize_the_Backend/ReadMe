@@ -1,0 +1,59 @@
+To minimize the image size and install dependencies, this Dockerfile uses python:3.8-slim as the base image and installs dependencies using pip with --no-cache-dir to avoid storing the cache, further reducing the image size.
+
+
+To do Tasks/Steps
+
+1. Create a requirements.txt file that lists all the Python packages that the app needs from exercise "1.Setup_python_with_Flask" in "/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/1.Setup_python_with_Flask/venv" by runing "pip freeze > requirements.txt" from virtual environment. And thus looking like this:
+
+blinker==1.7.0
+click==8.1.7
+Flask==2.2.5
+Flask-SQLAlchemy==3.1.1
+greenlet==3.0.3
+itsdangerous==2.1.2
+Jinja2==3.1.3
+MarkupSafe==2.1.5
+psycopg2-binary==2.9.9
+SQLAlchemy==2.0.28
+typing_extensions==4.10.0
+Werkzeug==3.0.1
+
+
+2. Build and run dockerfile and db through the docker-compose
+#   docker-compose up --build
+(reminder: that if the database becomes very heavy to start perhaps using "wait-for-it.sh" script would be ideal. thought i am not using the script, its good practise to use it, so i kept it just in case)
+
+ Flask application should be running inside a Docker container, access it via http://localhost:5000
+
+
+3. Testing the /populate and /delete Endpoints
+
+    3.1.0 testing the /populate endpoint: This endpoint should add data to the database. Since it's a POST request, i'll use:
+    # curl -X POST http://localhost:5000/populate
+
+    3.1.1. POPULATE OUTCOME:
+    ✔  Ubu  10:26:33 
+    # /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/2.Dockerize_the_Backend: curl -X POST http://localhost:5000/populate
+
+    {"data":"Qt69DssuZp","message":"Data added successfully"}
+    /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/2.Dockerize_the_Backend 
+
+    3.2.0. testing the /delete endpoint: This endpoint should remove data from the database. Being a DELETE request, Ill use:
+
+    #  curl -X DELETE http://localhost:5000/delete
+
+    3.2.1. DELETE OUTCOME:
+     ✔  Ubu  10:26:38 
+    # /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/2.Dockerize_the_Backend: curl -X DELETE http://localhost:5000/delete
+
+    {"message":"1 rows deleted"}
+    # /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/2.Dockerize_the_Backend:
+
+    3.3. Docker OUTCOME:
+
+    web_1  |  * Running on all addresses (0.0.0.0)
+    web_1  |  * Running on http://127.0.0.1:5000
+    web_1  |  * Running on http://172.21.0.3:5000
+    web_1  | Press CTRL+C to quit
+    web_1  | 172.21.0.1 - - [21/Mar/2024 10:26:38] "POST /populate HTTP/1.1" 201 -
+    web_1  | 172.21.0.1 - - [21/Mar/2024 10:37:12] "DELETE /delete HTTP/1.1" 200 -
