@@ -34,7 +34,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: gelsonm/my-app:latest  # Replace with your Docker Hub username and desired image name
+        tags: gelsonm/aventus-app:latest  # Replace with your Docker Hub username and desired image name
 
     - name: Cleanup
       if: ${{ always() }}

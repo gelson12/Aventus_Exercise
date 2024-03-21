@@ -106,3 +106,22 @@ db_1   | 2024-03-21 09:26:34.583 UTC [1] LOG:  listening on IPv6 address "::", p
 db_1   | 2024-03-21 09:26:34.591 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
 db_1   | 2024-03-21 09:26:34.601 UTC [63] LOG:  database system was shut down at 2024-03-21 09:26:34 UTC
 db_1   | 2024-03-21 09:26:34.611 UTC [1] LOG:  database system is ready to accept connections
+
+
+EXERCISE 3.GitHub CI for Docker Image
+
+git push -u origin master         ✔  Ubu  11:50:45 
+Enumerating objects: 2602, done.
+Counting objects: 100% (2602/2602), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2570/2570), done.
+Writing objects: 100% (2602/2602), 14.80 MiB | 1.06 MiB/s, done.
+Total 2602 (delta 146), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (146/146), done.
+To https://github.com/gelson12/Aventus_Exercise.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+ /mnt/c/Users/Gelson/Downloads/Aventus_Exercise   master          
+
+ EXERCISE 4. 
+ 

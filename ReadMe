@@ -16,16 +16,16 @@ PLAN
 
 3. GitHub CI for Docker Image
 
-* Set up GitHub Actions workflow to build and push the Docker image to Docker Hub or GitHub Container Registry upon new commits to the main branch.
+* Setted up GitHub Actions workflow in ".github/workflow" directory to build and push the Docker image to Docker Hub upon new commits to the main branch.
 
 4. Helm Chart for Deployment
 
-* Create a Helm chart that includes:
+* Created a Helm chart that includes:
     * Deployment for the backend application.
-    * A PostgreSQL database deployment or StatefulSet, including PVCs for data persistence.
-    * Configuration to initialize the database schema on first run.
+    * A PostgreSQL database deployment , including PVCs for data persistence.
+    * Configured to initialize the database schema on first run.
     * A deployment for a web-based PostgreSQL UI (e.g., PGAdmin) accessible securely.
-* Include values.yaml for customizable deployment options.
+    * Included values.yaml for customizable deployment options.
 
 5. Instructions
 
