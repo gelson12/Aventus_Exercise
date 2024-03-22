@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   web:
-    build: ./DEVOPS Exercise Statement 1/Dockerize_the_Backend/
+    build: ./"DEVOPS Exercise Statement 1"/Dockerize_the_Backend/
     ports:
       - "5000:5000"
     environment:
