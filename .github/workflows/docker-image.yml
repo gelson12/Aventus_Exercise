@@ -24,8 +24,8 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-        context: ./Dockerize_the_Backend
-        file: ./Dockerfile
+        context: ./Dockerize_the_Backend/
+        file: ./Dockerize_the_Backend/Dockerfile
         push: true
         tags: gelsonm/aventus-app:latest  # Replace with your Docker Hub username and desired image name
       
