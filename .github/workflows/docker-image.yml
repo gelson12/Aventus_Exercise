@@ -27,7 +27,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-        context: "./DEVOPS_Exercise_Statement_1/"
-        file: "./DEVOPS_Exercise_Statement_1/Dockerize_the_Backend/Dockerfile"
+        context: ./DEVOPS_Exercise_Statement_1/
+        file: ./DEVOPS_Exercise_Statement_1/Dockerize_the_Backend/Dockerfile
         push: true
         tags: gelsonm/aventus-app:latest
