@@ -3,10 +3,10 @@ name: Build and Push Docker image
 on:
   push:
     branches:
-      - master  # or main, depending on your default branch name
+      - gelson12-patch-1  # or main, depending on your default branch name
   pull_request:
     branches:
-      - master
+      - gelson12-patch-1
 
 jobs:
   build-and-push:
