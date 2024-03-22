@@ -43,12 +43,19 @@ created file name called "app.py"
 I'll populate the database with random data:
 # curl -X POST http://localhost:5000/populate
 
+OUTCOME RESULT:
+{"data":"Qt69DssuZp","message":"Data added successfully"}
+
+
 Then I'll test delete endpoint to see if all data from the database:
 # curl -X DELETE http://localhost:5000/delete
 
+OUTCOME RESULT:
+{"message":"1 rows deleted"}
 
-Next Steps
+Next Steps/Things to improve on
 Adjust the RandomData model to fit a more meaningful actual data structure.
-Add error handling and validations as needed.
+Add better error handling and validations as needed.
 Secure my endpoints if necessary, with authentication.
 Consider organizing my project with Blueprints for larger applications.
+should leverage environment variables to provide a secure way to access sensitive information,but since i haven't containerazed the app and still working on my local machine then its not a priority YET.
