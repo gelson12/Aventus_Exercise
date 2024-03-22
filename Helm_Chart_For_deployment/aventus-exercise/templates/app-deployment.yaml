@@ -1,24 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aventus-app
+  name: {{ include "aventus-exercise.fullname" . }}
 spec:
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: aventus-app
+      app: {{ include "aventus-exercise.name" . }}
   template:
     metadata:
       labels:
-        app: aventus-app
+        app: {{ include "aventus-exercise.name" . }}
     spec:
       containers:
-      - name: aventus-app
-        image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
-        ports:
-        - containerPort: 5000
-        env:
-        - name: SQLALCHEMY_DATABASE_URI
-          value: "postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@postgres/aventus_db"
-        envFrom:
-        - secretRef:
-            name: postgres-secret
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+          imagePullPolicy: {{ .Values.app.image.pullPolicy }}
+          ports:
+            - containerPort: 80

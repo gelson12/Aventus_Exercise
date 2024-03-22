@@ -1,8 +1,34 @@
+replicaCount: 1
+
 postgres:
+  enabled: true
+  image:
+    repository: postgres
+    tag: 12
+    pullPolicy: IfNotPresent
   user: "Z2Vsc29u"  # base64 for 'gelson'
   password: "c2hhZG93"  # base64 for 'shadow'
 
 app:
   image:
-    repository: yourdockerhubusername/aventus-exercise
-    tag: latest
+    repository: gelsonm/aventus-app
+    pullPolicy: IfNotPresent
+    tag: "latest"
+  
+service:
+  type: ClusterIP
+  port: 80
+
+serviceAccount:
+  create: true  # Set to false if you do not want to create a service account
+
+ingress:
+  enabled: false  # Set to true to enable ingress
+  # Add more ingress configurations as needed
+
+autoscaling:
+  enabled: false  # Change to true to enable autoscaling
+  # You can add more autoscaling configurations as needed, such as minReplicas, maxReplicas, etc.
+
+
+

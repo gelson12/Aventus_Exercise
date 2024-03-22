@@ -1,0 +1,115 @@
+ /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise   master ●  ls
+Chart.yaml  charts  templates  values.yaml
+ /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise   master ●  su kubern
+etes
+[sudo] password for kubernetes: 
+Sleeping for 1 second to let systemd settle
+Welcome to Ubuntu 22.04.4 LTS (GNU/Linux 5.15.146.1-microsoft-standard-WSL2 x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Last login: Thu Mar  7 09:48:34 GMT 2024 on pts/3
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$ microk8s
+ start
+[sudo] password for kubernetes: 
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$ microk8s
+ status
+microk8s is not running. Use microk8s inspect for a deeper inspection.
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$ microk8s
+ start
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$ microk8s status
+microk8s is running
+high-availability: no
+  datastore master nodes: 127.0.0.1:19001
+  datastore standby nodes: none
+addons:
+  enabled:
+    dashboard            # (core) The Kubernetes dashboard
+    dns                  # (core) CoreDNS
+    ha-cluster           # (core) Configure high availability on the current node
+    helm                 # (core) Helm - the package manager for Kubernetes
+    helm3                # (core) Helm 3 - the package manager for Kubernetes
+    hostpath-storage     # (core) Storage class; allocates storage from host directory
+    ingress              # (core) Ingress controller for external access
+    metrics-server       # (core) K8s Metrics Server for API access to service metrics
+    registry             # (core) Private image registry exposed on localhost:32000
+    storage              # (core) Alias to hostpath-storage add-on, deprecated
+  disabled:
+    cert-manager         # (core) Cloud native certificate management
+    community            # (core) The community addons repository
+    gpu                  # (core) Automatic enablement of Nvidia CUDA
+    host-access          # (core) Allow Pods connecting to Host services smoothly
+    kube-ovn             # (core) An advanced network fabric for Kubernetes
+    mayastor             # (core) OpenEBS MayaStor
+    metallb              # (core) Loadbalancer for your Kubernetes cluster
+    minio                # (core) MinIO object storage
+    observability        # (core) A lightweight observability stack for logs, traces and metrics
+    prometheus           # (core) Prometheus operator for monitoring and logging
+    rbac                 # (core) Role-Based Access Control for authorisation
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$ kubectl 
+get all
+NAME                 TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.152.183.1   <none>        443/TCP   177d
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$ kubectl get namespace
+NAME                            STATUS   AGE
+kube-system                     Active   177d
+kube-public                     Active   177d
+kube-node-lease                 Active   177d
+default                         Active   177d
+jenkins                         Active   176d
+prometheus-grafana              Active   171d
+ansible                         Active   171d
+logstash-elasticsearch-kibana   Active   171d
+elk                             Active   169d
+ingress                         Active   153d
+agora-prod                      Active   122d
+container-registry              Active   113d
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$ kubectl 
+create namespace aventus-helmchart-exercise
+namespace/aventus-helmchart-exercise created
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$ helm lint .
+==> Linting .
+[INFO] Chart.yaml: icon is recommended
+[ERROR] templates/: template: aventus-exercise/templates/app-deployment.yaml:16:26: executing "aventus-exercise/templates/app-deployment.yaml" at <.Values.app.image.repository>: nil pointer evaluating interface {}.image
+
+Error: 1 chart(s) linted, 1 chart(s) failed
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$ helm lint .
+==> Linting .
+[INFO] Chart.yaml: icon is recommended
+[ERROR] templates/: template: aventus-exercise/templates/deployment.yaml:34:28: executing "aventus-exercise/templates/deployment.yaml" at <.Values.image.repository>: nil pointer evaluating interface {}.repository
+
+Error: 1 chart(s) linted, 1 chart(s) failed
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$ helm lint .
+==> Linting .
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$ helm install aventus-exercise . --namespace aventus-helmchart-exercise --values values.yaml
+Error: INSTALLATION FAILED: 2 errors occurred:
+        * deployments.apps "aventus-exercise" already exists
+        * deployments.apps "aventus-exercise-postgres" already exists
+
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$ helm list --namespace aventus-helmchart-exercise
+NAME                    NAMESPACE                       REVISION        UPDATED                                 STATUS     CHART                   APP VERSION
+aventus-exercise        aventus-helmchart-exercise      1               2024-03-22 11:16:49.200815465 +0000 UTC failed     aventus-exercise-0.1.0  1.16.0
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/Helm_Chart_For_deployment/aventus-exercise$ kubectl get all -n aventus-helmchart-exercise
+NAME                                             READY   STATUS    RESTARTS   AGE
+pod/aventus-exercise-postgres-66c96b5487-7fhcw   1/1     Running   0          70s
+pod/aventus-exercise-7b5c6c4fc5-q7cvh            1/1     Running   0          70s
+
+NAME                                        READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/aventus-exercise-postgres   1/1     1            1           70s
+deployment.apps/aventus-exercise            1/1     1            1           70s
+
+NAME                                                   DESIRED   CURRENT   READY   AGE
+replicaset.apps/aventus-exercise-postgres-66c96b5487   1         1         1       70s
+replicaset.apps/aventus-exercise-7b5c6c4fc5            1         1         1       70s

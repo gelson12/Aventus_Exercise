@@ -31,6 +31,23 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
+Create a default fully qualified app name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+*/}}
+{{- define "aventus-exercise.postgres-fullname" -}}
+{{- printf "%s-%s" .Release.Name "postgres" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+
+{{/*
+Generate PostgreSQL full name.
+*/}}
+{{- define "aventus-exercise.postgres-name" -}}
+{{- printf "%s-%s" (include "aventus-exercise.fullname" .) "postgres" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+
+{{/*
 Common labels
 */}}
 {{- define "aventus-exercise.labels" -}}
