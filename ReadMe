@@ -22,7 +22,7 @@ TESTED: YES
 
 3. GitHub CI for Docker Image
 
-* Setted up GitHub Actions workflow in ".github/workflow" directory to build and push the Docker image to Docker Hub upon new commits to the main branch.
+* Setted up GitHub Actions workflow in ".github/workflow/docker-image.yml" directory to build Docker image when triggered by push towards "DEVOPS_Exercise_Statement_1" branch
 
 EXERCISE: COMPLETED
 TESTED: YES
@@ -54,22 +54,23 @@ Infrastructure as Code (IaC) Using Terraform
 
 1. Terraform Setup for AWS Resources
 
-    * Define a Python script that generates a file with random data.
-    * Use AWS Lambda to run this script, packaging the Python script within the Lambda deployment package.
+    * Defined a Python script that generates a file with random data.
+    * Used AWS Lambda to run this script, packaging the Python script within the Lambda deployment package.
     * Trigger the Lambda function through AWS API Gateway, set up with a custom domain.
-    * Configure the S3 bucket in a separate AWS account, handling cross-account permissions correctly for Lambda to write to it.
+    * Configured the S3 bucket in a separate AWS account, handling cross-account permissions correctly for Lambda to write to it.
 
 EXERCISE: COMPLETED
 TESTED: UNTESTED
 
 2. GitHub Actions for Deployment
 
-    * Create a CI/CD pipeline using GitHub Actions to deploy the Terraform code.
-    * Ensure the pipeline includes steps for Terraform initialization, validation, plan, and apply.
-    * Use secrets for sensitive information like AWS credentials.
+    * CreateD a CI/CD pipeline using GitHub Actions to deploy the Terraform code.
+    * EnsurIng the pipeline includes steps for Terraform initialization, validation, plan, and apply.
+    * Used secrets for sensitive information like AWS credentials.
+    * pipeline is located".github/workflow/terraform-action.yml" directory and its triggered when push to "DEVOPS_Exercise_Statement_2" branch
 
-EXERCISE: PENDING
-TESTED: UNTESTED
+EXERCISE: COMPLETED
+TESTED: ON LOCAL ENVIRONMENT
 
 Helm Charts Sharing
 * Provide examples of Helm charts you've developed, showcasing how you structure charts, manage dependencies, configure templates, and utilize values for deployment customization.
