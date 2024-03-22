@@ -2,7 +2,7 @@ DEVOPS Exercise Statement 1
 Backend with Two Endpoints
 
 PLAN
-1. Going to Setup a Python project with Flask(or FastAPI) by:
+1. Going to Setup a Python project with Flask by:
 
     * Creating Flask webframework to /populate and /delete endpoints.
     * Use SQLAlchemy for ORM with PostgreSQL.
@@ -40,6 +40,14 @@ EXERCISE: COMPLETED
 TESTED: YES
 
 
+
+5. Not related to previous exercise:
+   a. Share some terraform code and/or module that is using the AWS provider that was developed by you.
+
+EXERCISE: COMPLETED
+TESTED: YES
+
+
 DEVOPS Exercise Statement 2
 
 Infrastructure as Code (IaC) Using Terraform
@@ -51,8 +59,8 @@ Infrastructure as Code (IaC) Using Terraform
     * Trigger the Lambda function through AWS API Gateway, set up with a custom domain.
     * Configure the S3 bucket in a separate AWS account, handling cross-account permissions correctly for Lambda to write to it.
 
-EXERCISE: PENDING
-TESTED: PENDING
+EXERCISE: COMPLETED
+TESTED: UNTESTED
 
 2. GitHub Actions for Deployment
 
@@ -61,11 +69,11 @@ TESTED: PENDING
     * Use secrets for sensitive information like AWS credentials.
 
 EXERCISE: PENDING
-TESTED: PENDING
+TESTED: UNTESTED
 
 Helm Charts Sharing
 * Provide examples of Helm charts you've developed, showcasing how you structure charts, manage dependencies, configure templates, and utilize values for deployment customization.
 
-EXERCISE: PENDING
-TESTED: PENDING
+EXERCISE: CLASSIFIED UNABLE TO SHARE
+TESTED: CLASSIFIED UNABLE TO SHARE
 

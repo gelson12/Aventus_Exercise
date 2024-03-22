@@ -3,10 +3,7 @@ name: Build and Push Docker image
 on:
   push:
     branches:
-      - gelson12-patch-1
-  pull_request:
-    branches:
-      - gelson12-patch-1
+      - DEVOPS_Exercise_Statement_1
 
 jobs:
   build-and-push:

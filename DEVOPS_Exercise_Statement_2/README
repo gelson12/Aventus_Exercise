@@ -1,9 +1,12 @@
-Step 1: Python Script
+Step 1: Scripting
+
+### Python Script (generate_random_data.py)
 First, created a Python script named generate_random_data.py. This script will generate random data and can be invoked by an AWS Lambda function.
+
 
 Step 2: Terraform Setup
 
-### main.tf (AWS Lambda Function)
+### AWS Lambda Function ( main.tf )
 Create a Terraform script to deploy the Lambda function. This script will package the Python script and create a Lambda function. You also need to define the IAM role that gives the Lambda function permission to write to S3.
 
 provider "aws" {
@@ -52,8 +55,7 @@ resource "aws_lambda_function" "my_lambda" {
 
 Make sure to zip the Python script (generate_random_data.py) into lambda_function_payload.zip before running Terraform.
 
-### AWS_API_Gateway.tf
-Define an AWS API Gateway to trigger the Lambda function.
+### Define an AWS API Gateway to trigger the Lambda function ( AWS_API_Gateway.tf )
 
 resource "aws_api_gateway_rest_api" "AventusAPI" {
   name        = "AventusAPI"
@@ -84,7 +86,7 @@ resource "aws_api_gateway_integration" "LambdaIntegration" {
 }
 
 
-### Cross_Account_S3_Access.tf
+### Cross-Account S3 Access ( Cross_Account_S3_Access.tf )
 Handling cross-account permissions for S3 involves setting up an S3 bucket policy that allows the Lambda function in Account A to write to the S3 bucket in Account B.
 
 In the S3 bucket's Terraform configuration in Account B:
@@ -150,3 +152,35 @@ resource "aws_api_gateway_domain_name" "my_custom_domain" {
     types = ["EDGE"] # or REGIONAL based on your requirement
   }
 }
+
+Step 3: Set Up Base Path Mapping
+unfortunatly running out of time but i would likely want to map my API's deployment stage to the root (or another base path) of my custom domain.
+
+resource "aws_api_gateway_base_path_mapping" "my_base_path_mapping" {
+  api_id      = aws_api_gateway_rest_api.MyDemoAPI.id
+  stage_name  = "prod"
+  domain_name = aws_api_gateway_domain_name.my_custom_domain.domain_name
+}
+
+Replace "prod" with your API's deployment stage name.
+
+
+
+Step 4: Route 53 DNS Configuration for the Custom Domain
+To route traffic to my custom domain, I'll need a DNS record in Route 53 or your DNS provider.
+
+using AWS Route 53 and my domain is managed there:
+
+resource "aws_route53_record" "api_dns" {
+  zone_id = aws_route53_zone.my_zone.zone_id
+  name    = "api.aventus.com"
+  type    = "A"
+
+  alias {
+    name                   = aws_api_gateway_domain_name.my_custom_domain.cloudfront_domain_name
+    zone_id                = aws_api_gateway_domain_name.my_custom_domain.cloudfront_zone_id
+    evaluate_target_health = true
+  }
+}
+
+This Terraform configuration sets up a custom domain for the API Gateway, enabling access to the API via https://api.aventus.com. 
