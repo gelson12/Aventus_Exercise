@@ -17,7 +17,7 @@ Using LocalStack for AWS API Mocking
 
 
 #######################################################################################################
-This was the original workflow but since it was giving error due to not having a valid AWS credential I had to change it localStack integration
+This was the original workflow but since it was giving error due to not having a valid AWS credential I had to change it localStack integration for testing purposes. So ill keep it here in case i may need to reuse it.
 
 name: Terraform
 
@@ -107,4 +107,4 @@ jobs:
     - name: Terraform Output (AWS)
       run: terraform output
       working-directory: DEVOPS_Exercise_Statement_2/terraform_setup
-
+#######################################################################################################
