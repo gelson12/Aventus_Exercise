@@ -21,15 +21,15 @@ jobs:
 
     - name: Terraform Init (Local)
       run: terraform init
-      working-directory: Aventus_Exercise/DEVOPS_Exercise_Statement_2/terraform_setup
+      working-directory: DEVOPS_Exercise_Statement_2/terraform_setup
 
     - name: Terraform Apply (Local)
       run: terraform apply -auto-approve -var 'deployment_type=local'
-      working-directory: Aventus_Exercise/DEVOPS_Exercise_Statement_2/terraform_setup
+      working-directory: DEVOPS_Exercise_Statement_2/terraform_setup
 
     - name: Terraform Output (Local)
       run: terraform output
-      working-directory: Aventus_Exercise/DEVOPS_Exercise_Statement_2/terraform_setup
+      working-directory: DEVOPS_Exercise_Statement_2/terraform_setup
 
   terraform-aws:
     name: Terraform AWS Deploy
@@ -54,12 +54,12 @@ jobs:
 
     - name: Terraform Init (AWS)
       run: terraform init
-      working-directory: Aventus_Exercise/DEVOPS_Exercise_Statement_2/terraform_setup
+      working-directory: DEVOPS_Exercise_Statement_2/terraform_setup
 
     - name: Terraform Apply (AWS)
       run: terraform apply -auto-approve -var 'deployment_type=aws'
-      working-directory: Aventus_Exercise/DEVOPS_Exercise_Statement_2/terraform_setup
+      working-directory: DEVOPS_Exercise_Statement_2/terraform_setup
 
     - name: Terraform Output (AWS)
       run: terraform output
-      working-directory: Aventus_Exercise/DEVOPS_Exercise_Statement_2/terraform_setup
+      working-directory: DEVOPS_Exercise_Statement_2/terraform_setup
