@@ -1,3 +1,12 @@
 
 To Do list:
 Remember to adjust the gitHub Actions workflow script to dynamically generate the lambda_function_payload.zip file from the generate_random_data.py script and ensure it is present in the DEVOPS_Exercise_Statement_2/terraform_setup directory before running Terraform commands, so I may need to add a new step before the Terraform initialization step. This new step will zip the generate_random_data.py file and move the resulting lambda_function_payload.zip into the correct directory(line 17-25)
+
+Please note that the AWS environments where i am currently at are extremelly monitored, therefore I will not be able to test my terraform code.
+
+
+Handling errors:
+Because i am not allowed to use the credentials from the company i currently work for the terraform GitHub Actions workflow is causing errors particularly in operations that require valid AWS credentials, 
+
+Possible Workaround:
+i can introduce conditional logic to differentiate between operations that need real AWS interactions and those that can be performed with dummy credentials
