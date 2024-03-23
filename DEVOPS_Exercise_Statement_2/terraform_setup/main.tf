@@ -37,6 +37,6 @@ resource "aws_lambda_function" "my_lambda" {
   function_name    = "my_random_data_generator"
   role             = aws_iam_role.lambda_execution_role.arn
   handler          = "generate_random_data.lambda_handler"
-  source_code_hash = filebase64sha256("lambda_function_payload.zip")
+  source_code_hash = filebase64sha256("lambda_function_payload.zip")#may need to automate script zipping
   runtime          = "python3.8"
 }

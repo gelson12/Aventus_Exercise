@@ -9,12 +9,11 @@ jobs:
   terraform-local:
     name: Terraform Local Deploy
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/DEVOPS_Exercise_Statement_2' && github.event_name == 'push' # Condition to ensure this job runs only on a specific branch and event
+    if: github.ref == 'refs/heads/DEVOPS_Exercise_Statement_2' && github.event_name == 'push'
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
-      
-    # Simulated local Terraform execution steps here
+
     - name: Setup Terraform for Local
       uses: hashicorp/setup-terraform@v1
       with:
@@ -22,18 +21,21 @@ jobs:
 
     - name: Terraform Init (Local)
       run: terraform init
+      working-directory: Aventus_Exercise/DEVOPS_Exercise_Statement_2/terraform_setup
 
     - name: Terraform Apply (Local)
       run: terraform apply -auto-approve -var 'deployment_type=local'
+      working-directory: Aventus_Exercise/DEVOPS_Exercise_Statement_2/terraform_setup
 
     - name: Terraform Output (Local)
       run: terraform output
+      working-directory: Aventus_Exercise/DEVOPS_Exercise_Statement_2/terraform_setup
 
   terraform-aws:
     name: Terraform AWS Deploy
     runs-on: ubuntu-latest
-    needs: terraform-local # Ensure local execution is completed first
-    if: github.ref == 'refs/heads/DEVOPS_Exercise_Statement_2' && github.event_name == 'push' # Same condition as above for consistency
+    needs: terraform-local
+    if: github.ref == 'refs/heads/DEVOPS_Exercise_Statement_2' && github.event_name == 'push'
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
@@ -52,9 +54,12 @@ jobs:
 
     - name: Terraform Init (AWS)
       run: terraform init
+      working-directory: Aventus_Exercise/DEVOPS_Exercise_Statement_2/terraform_setup
 
     - name: Terraform Apply (AWS)
       run: terraform apply -auto-approve -var 'deployment_type=aws'
+      working-directory: Aventus_Exercise/DEVOPS_Exercise_Statement_2/terraform_setup
 
     - name: Terraform Output (AWS)
       run: terraform output
+      working-directory: Aventus_Exercise/DEVOPS_Exercise_Statement_2/terraform_setup
