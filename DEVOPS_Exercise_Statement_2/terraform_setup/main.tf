@@ -2,10 +2,10 @@ provider "aws" {
   region                      = var.aws_region
   access_key                  = "mock_access_key"
   secret_key                  = "mock_secret_key"
-  s3_force_path_style         = true
   skip_credentials_validation = true
   skip_metadata_api_check     = true
   skip_requesting_account_id  = true
+
   endpoints {
     s3 = var.aws_endpoint_url
   }
@@ -20,7 +20,7 @@ variable "aws_region" {
 variable "aws_endpoint_url" {
   description = "Endpoint URL for AWS services"
   type        = string
-  default     = "http://localhost:4566" # Default to LocalStack for local development to skip invalid AWS credential errors
+  default     = "http://localhost:4566" # Default to LocalStack for local development
 }
 /*For real AWS deployments, ensure var.aws_endpoint_url is unset or set to null, and use actual AWS credentials instead of mock values. */
 
