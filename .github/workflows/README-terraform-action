@@ -1,0 +1,3 @@
+
+To Do list:
+Remember to adjust the gitHub Actions workflow script to dynamically generate the lambda_function_payload.zip file from the generate_random_data.py script and ensure it is present in the DEVOPS_Exercise_Statement_2/terraform_setup directory before running Terraform commands, so I may need to add a new step before the Terraform initialization step. This new step will zip the generate_random_data.py file and move the resulting lambda_function_payload.zip into the correct directory(line 17-25)

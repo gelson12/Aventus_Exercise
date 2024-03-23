@@ -1,5 +1,5 @@
-resource "aws_s3_bucket" "b" {
-  bucket = "example-bucket-in-account-b"
+resource "aws_s3_bucket_acl" "b" {
+  bucket = "aventus-bucket-in-account-b"
   acl    = "private"
 
   policy = jsonencode({
@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "b" {
         AWS: "arn:aws:iam::123456789012:role/lambda_execution_role",//Replace 123456789012 with your actual AWS Account ID where the Lambda function resides.
       },
       Action = "s3:PutObject",
-      Resource = "arn:aws:s3:::example-bucket-in-account-b/*",
+      Resource = "arn:aws:s3:::aventus-bucket-in-account-b/*",
     }],
   })
 }
