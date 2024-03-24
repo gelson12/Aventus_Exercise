@@ -87,15 +87,4 @@ Werkzeug==3.0.1
     directly in your codebase. and if i manage to finish everything on time ill get back and fix all of these
     security issues.
 
-    RESOLUTION FOR HARDCODING DB CREDENTIAL  
-    i tweaked the script to retrieve the PostgreSQL database username and password from environment variables (DB_USERNAME and DB_PASSWORD) instead of hardcoding them directly in the source code like i did on exercise 1(Setup_python_with_Flask):
-
-    python
-
-    username = os.environ.get('DB_USERNAME', 'default_username')  # Fallback to 'default_username' if not set
-    password = os.environ.get('DB_PASSWORD', 'default_password')  # Fallback to 'default_password' if not set
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{username}:{password}@db/aventus_db'
-
-    This means the actual username and password used by the application will be whatever values are provided in the DB_USERNAME and DB_PASSWORD environment variables at runtime. If these environment variables are not set, the application will fallback to using default_username and default_password as the username and password, respectively.
-
 

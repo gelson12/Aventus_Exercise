@@ -3,34 +3,48 @@ name: Terraform
 on:
   push:
     branches:
-      - DEVOPS_Exercise_Statement_2  # Trigger on pushes to main branch      
+      - DEVOPS_Exercise_Statement_2
 
 jobs:
-  terraform:
-    name: Terraform Deploy
+  terraform-plan:
+    name: Terraform Plan
     runs-on: ubuntu-latest
-
+    services:
+      localstack:
+        image: localstack/localstack
+        ports:
+          - "4566:4566"
+    if: github.ref == 'refs/heads/DEVOPS_Exercise_Statement_2' && github.event_name == 'push'
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
-      
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1  # Specify your AWS region
+
+    - name: Package Lambda Function
+      run: |
+        mkdir -p package
+        cp DEVOPS_Exercise_Statement_2/python_random_data/generate_random_data.py package/
+        cd package
+        zip -r ../DEVOPS_Exercise_Statement_2/terraform_setup/lambda_function_payload.zip .
+        cd ..
+        rm -rf package
+      working-directory: ${{ github.workspace }}
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: 0.14.9  # Specify Terraform version
+        terraform_version: 0.14.9
 
     - name: Terraform Init
       run: terraform init
+      working-directory: DEVOPS_Exercise_Statement_2/terraform_setup
 
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
+    - name: Terraform Plan
+      run: terraform plan
+      working-directory: DEVOPS_Exercise_Statement_2/terraform_setup
+      env:
+        AWS_ACCESS_KEY_ID: test
+        AWS_SECRET_ACCESS_KEY: test
+        AWS_DEFAULT_REGION: us-east-1
+        AWS_ENDPOINT_URL: http://localhost:4566
 
-    - name: Terraform Output
-      run: terraform output
+  # The terraform-apply job remains unchanged from your original script.

@@ -2,14 +2,11 @@ from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import random
 import string
-import os  # Import os module to access environment variables
+
 
 app = Flask(__name__)
 # Configuring my PostgreSQL database URI below
-# Use environment variables for sensitive data
-username = os.environ.get('DB_USERNAME', 'default_username')  # Fallback to 'default_username' if not set
-password = os.environ.get('DB_PASSWORD', 'default_password')  # Fallback to 'default_password' if not set
-app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{username}:{password}@db/aventus_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://gelson:shadow@db/aventus_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 

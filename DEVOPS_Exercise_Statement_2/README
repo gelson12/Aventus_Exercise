@@ -7,7 +7,7 @@ First, created a Python script named generate_random_data.py. This script will g
 Step 2: Terraform Setup
 
 ### AWS Lambda Function ( main.tf )
-Create a Terraform script to deploy the Lambda function. This script will package the Python script and create a Lambda function. You also need to define the IAM role that gives the Lambda function permission to write to S3.
+Create a Terraform script to deploy the Lambda function. This script will package the Python script and create a Lambda function. theres also the need to define the IAM role that gives the Lambda function permission to write to S3.
 
 provider "aws" {
   region = "us-east-1"
@@ -27,7 +27,7 @@ resource "aws_iam_role" "lambda_execution_role" {
     }],
   })
 
-  # Assuming the Lambda needs to write to an S3 bucket, add the necessary permissions.
+  # Assuming the Lambda needs to write to an S3 bucket, adding the necessary permissions.
   inline_policy {
     name = "write_to_s3"
     policy = jsonencode({
@@ -53,9 +53,9 @@ resource "aws_lambda_function" "my_lambda" {
 }
 
 
-Make sure to zip the Python script (generate_random_data.py) into lambda_function_payload.zip before running Terraform.
+I might create a sub-script within the "terraform-action.yml" action workflow to zip the Python script (generate_random_data.py) into lambda_function_payload.zip and move it to the terraform directory.
 
-### Define an AWS API Gateway to trigger the Lambda function ( AWS_API_Gateway.tf )
+### Defining an AWS API Gateway to trigger the Lambda function ( AWS_API_Gateway.tf )
 
 resource "aws_api_gateway_rest_api" "AventusAPI" {
   name        = "AventusAPI"
@@ -111,15 +111,9 @@ resource "aws_s3_bucket" "b" {
 POLICY
 }
 
-Since I am not allowed to use my current employers AWS account I will need to make the code a littel generinc like Making sure that ill replace "123456789012" with the actual AWS Account ID where my Lambda function will resides if i am provided with an aws account to test the code
+Since I am not allowed to use my current employers AWS account I will need to make the code a slightly generic like Making sure that ill replace "123456789012" with the actual AWS Account ID where my Lambda function will resides if i am provided with an aws account to test the code
 
 So for testing purposes Replace  with your actual AWS Account ID where the Lambda function resides.
-
-NOTE:
-You'll need to package my Python script into lambda_function_payload.zip before deploying.
-Make sure to replace placeholder values with actual values relevant to your AWS setup, such as the S3 bucket name and AWS Account ID.
-This setup assumes the Lambda function directly writes to S3. Depending on your actual use case, you may need to adjust the permissions or the Python script accordingly.
-
 
 
 ### Custom Domain for API Gateway
@@ -157,7 +151,7 @@ Step 3: Set Up Base Path Mapping
 unfortunatly running out of time but i would likely want to map my API's deployment stage to the root (or another base path) of my custom domain.
 
 resource "aws_api_gateway_base_path_mapping" "my_base_path_mapping" {
-  api_id      = aws_api_gateway_rest_api.MyDemoAPI.id
+  api_id      = aws_api_gateway_rest_api.aventusAPI.id
   stage_name  = "prod"
   domain_name = aws_api_gateway_domain_name.my_custom_domain.domain_name
 }

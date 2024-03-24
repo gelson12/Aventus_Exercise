@@ -1,0 +1,192 @@
+Current runner version: '2.314.1'
+Operating System
+Runner Image
+Runner Image Provisioner
+GITHUB_TOKEN Permissions
+Secret source: Actions
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'actions/checkout@v2' (SHA:ee0669bd1cc54295c223e0bb666b733df41de1c5)
+Download action repository 'docker/login-action@v1' (SHA:dd4fa0671be5250ee6f50aedf4cb05514abda2c7)
+Download action repository 'docker/setup-buildx-action@v1' (SHA:f211e3e9ded2d9377c8cadc4489a4e38014bc4c9)
+Download action repository 'docker/build-push-action@v2' (SHA:ac9327eae2b366085ac7f6a2d02df8aa8ead720a)
+Complete job name: build-and-push
+2s
+Run actions/checkout@v2
+Syncing repository: gelson12/Aventus_Exercise
+Getting Git version info
+Temporarily overriding HOME='/home/runner/work/_temp/1b7db167-a6fa-4124-b796-e676df22692f' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+/usr/bin/git config --global --add safe.directory /home/runner/work/Aventus_Exercise/Aventus_Exercise
+Deleting the contents of '/home/runner/work/Aventus_Exercise/Aventus_Exercise'
+Initializing the repository
+Disabling automatic garbage collection
+Setting up auth
+Fetching the repository
+Determining the checkout info
+Checking out the ref
+/usr/bin/git log -1 --format='%H'
+'3581bd32a77c203c16da2b4eb15663937ec5b750'
+1s
+Run docker/login-action@v1
+Warning: The `save-state` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+Warning: The `save-state` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+Warning: The `save-state` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+Logging into Docker Hub...
+Login Succeeded!
+7s
+Run docker/setup-buildx-action@v1
+Warning: The `save-state` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+Warning: The `save-state` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+Docker info
+Buildx version
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+Warning: The `save-state` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+Creating a new builder instance
+Booting builder
+Inspect builder
+Warning: The `save-state` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+BuildKit version
+13s
+Run docker/build-push-action@v2
+Warning: The `save-state` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+Docker info
+Warning: The `save-state` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+/usr/bin/docker buildx build --file ./DEVOPS_Exercise_Statement_1/Dockerize_the_Backend/Dockerfile --iidfile /tmp/docker-build-push-y4FRxO/iidfile --tag ***/aventus-app:latest --metadata-file /tmp/docker-build-push-y4FRxO/metadata-file --push ./DEVOPS_Exercise_Statement_1/Dockerize_the_Backend/
+#0 building with "builder-fcc7e5e1-92d2-4c1e-b491-489e7d7d7f31" instance using docker-container driver
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 614B done
+#1 DONE 0.0s
+#2 [internal] load metadata for docker.io/library/python:3.8-slim
+#2 ...
+#3 [auth] library/python:pull token for registry-1.docker.io
+#3 DONE 0.0s
+#2 [internal] load metadata for docker.io/library/python:3.8-slim
+#2 DONE 0.9s
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+#5 [internal] load build context
+#5 transferring context: 20.34kB done
+#5 DONE 0.0s
+#6 [1/4] FROM docker.io/library/python:3.8-slim@sha256:95bfecec648356cdd0b28c8b00ce00009baff10c99d1126a82d1aca716453a1a
+#6 resolve docker.io/library/python:3.8-slim@sha256:95bfecec648356cdd0b28c8b00ce00009baff10c99d1126a82d1aca716453a1a done
+#6 sha256:18dacb59e6d34eadfba0da78f1b3a5f5addfccd45ee854f6af9877b9ed5c4b3f 0B / 3.13MB 0.2s
+#6 sha256:18dacb59e6d34eadfba0da78f1b3a5f5addfccd45ee854f6af9877b9ed5c4b3f 3.13MB / 3.13MB 0.2s done
+#6 sha256:46996c1c5ef3592977cd1c8454cf833bf486a5be36f71847794d97bac47a35f0 246B / 246B 0.2s done
+#6 sha256:93d3f6d14ae5338f6f639a4ed5946980d38c016a537a330f20921c5c7e3995a9 8.39MB / 11.67MB 0.3s
+#6 sha256:1103112ebfc46e01c0f35f3586e5a39c6a9ffa32c1a362d4d5f20e3783c6fdd7 0B / 3.51MB 0.2s
+#6 sha256:93d3f6d14ae5338f6f639a4ed5946980d38c016a537a330f20921c5c7e3995a9 11.67MB / 11.67MB 0.3s done
+#6 sha256:1103112ebfc46e01c0f35f3586e5a39c6a9ffa32c1a362d4d5f20e3783c6fdd7 3.51MB / 3.51MB 0.3s done
+#6 sha256:8a1e25ce7c4f75e372e9884f8f7b1bedcfe4a7a7d452eb4b0a1c7477c9a90345 15.73MB / 29.12MB 0.3s
+#6 sha256:8a1e25ce7c4f75e372e9884f8f7b1bedcfe4a7a7d452eb4b0a1c7477c9a90345 29.12MB / 29.12MB 0.4s done
+#6 extracting sha256:8a1e25ce7c4f75e372e9884f8f7b1bedcfe4a7a7d452eb4b0a1c7477c9a90345
+#6 extracting sha256:8a1e25ce7c4f75e372e9884f8f7b1bedcfe4a7a7d452eb4b0a1c7477c9a90345 0.7s done
+#6 DONE 1.3s
+#6 [1/4] FROM docker.io/library/python:3.8-slim@sha256:95bfecec648356cdd0b28c8b00ce00009baff10c99d1126a82d1aca716453a1a
+#6 extracting sha256:1103112ebfc46e01c0f35f3586e5a39c6a9ffa32c1a362d4d5f20e3783c6fdd7 0.1s done
+#6 extracting sha256:93d3f6d14ae5338f6f639a4ed5946980d38c016a537a330f20921c5c7e3995a9
+#6 extracting sha256:93d3f6d14ae5338f6f639a4ed5946980d38c016a537a330f20921c5c7e3995a9 0.3s done
+#6 DONE 1.7s
+#6 [1/4] FROM docker.io/library/python:3.8-slim@sha256:95bfecec648356cdd0b28c8b00ce00009baff10c99d1126a82d1aca716453a1a
+#6 extracting sha256:46996c1c5ef3592977cd1c8454cf833bf486a5be36f71847794d97bac47a35f0 done
+#6 extracting sha256:18dacb59e6d34eadfba0da78f1b3a5f5addfccd45ee854f6af9877b9ed5c4b3f 0.1s done
+#6 DONE 1.8s
+#7 [2/4] WORKDIR /usr/src/app
+#7 DONE 0.2s
+#8 [3/4] COPY . .
+#8 DONE 0.0s
+#9 [4/4] RUN pip install --no-cache-dir -r requirements.txt
+#9 1.305 Collecting blinker==1.7.0
+#9 1.359   Downloading blinker-1.7.0-py3-none-any.whl (13 kB)
+#9 1.400 Collecting click==8.1.7
+#9 1.410   Downloading click-8.1.7-py3-none-any.whl (97 kB)
+#9 1.427      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 97.9/97.9 kB 6.7 MB/s eta 0:00:00
+#9 1.466 Collecting Flask==2.2.5
+#9 1.477   Downloading Flask-2.2.5-py3-none-any.whl (101 kB)
+#9 1.480      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 101.8/101.8 kB 146.3 MB/s eta 0:00:00
+#9 1.510 Collecting Flask-SQLAlchemy==3.1.1
+#9 1.522   Downloading flask_sqlalchemy-3.1.1-py3-none-any.whl (25 kB)
+#9 1.806 Collecting greenlet==3.0.3
+#9 1.819   Downloading greenlet-3.0.3-cp38-cp38-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (622 kB)
+#9 1.832      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 622.3/622.3 kB 55.4 MB/s eta 0:00:00
+#9 1.857 Collecting itsdangerous==2.1.2
+#9 1.868   Downloading itsdangerous-2.1.2-py3-none-any.whl (15 kB)
+#9 1.899 Collecting Jinja2==3.1.3
+#9 1.910   Downloading Jinja2-3.1.3-py3-none-any.whl (133 kB)
+#9 1.914      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.2/133.2 kB 182.2 MB/s eta 0:00:00
+#9 2.014 Collecting MarkupSafe==2.1.5
+#9 2.024   Downloading MarkupSafe-2.1.5-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (26 kB)
+#9 2.175 Collecting psycopg2-binary==2.9.9
+#9 2.188   Downloading psycopg2_binary-2.9.9-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+#9 2.210      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 158.1 MB/s eta 0:00:00
+#9 2.853 Collecting SQLAlchemy==2.0.28
+#9 2.866   Downloading SQLAlchemy-2.0.28-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.1 MB)
+#9 2.883      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.1/3.1 MB 206.9 MB/s eta 0:00:00
+#9 2.920 Collecting typing_extensions==4.10.0
+#9 2.930   Downloading typing_extensions-4.10.0-py3-none-any.whl (33 kB)
+#9 2.976 Collecting Werkzeug==3.0.1
+#9 2.988   Downloading werkzeug-3.0.1-py3-none-any.whl (226 kB)
+#9 2.991      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 226.7/226.7 kB 205.2 MB/s eta 0:00:00
+#9 3.084 Collecting importlib-metadata>=3.6.0
+#9 3.095   Downloading importlib_metadata-7.1.0-py3-none-any.whl (24 kB)
+#9 3.246 Collecting zipp>=0.5
+#9 3.257   Downloading zipp-3.18.1-py3-none-any.whl (8.2 kB)
+#9 3.378 Installing collected packages: zipp, typing_extensions, psycopg2-binary, MarkupSafe, itsdangerous, greenlet, click, blinker, Werkzeug, SQLAlchemy, Jinja2, importlib-metadata, Flask, Flask-SQLAlchemy
+#9 4.623 Successfully installed Flask-2.2.5 Flask-SQLAlchemy-3.1.1 Jinja2-3.1.3 MarkupSafe-2.1.5 SQLAlchemy-2.0.28 Werkzeug-3.0.1 blinker-1.7.0 click-8.1.7 greenlet-3.0.3 importlib-metadata-7.1.0 itsdangerous-2.1.2 psycopg2-binary-2.9.9 typing_extensions-4.10.0 zipp-3.18.1
+#9 4.623 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#9 4.739 
+#9 4.739 [notice] A new release of pip is available: 23.0.1 -> 24.0
+#9 4.739 [notice] To update, run: pip install --upgrade pip
+#9 DONE 4.9s
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 1.4s done
+#10 ...
+#11 [auth] ***/aventus-app:pull,push token for registry-1.docker.io
+#11 DONE 0.0s
+#10 exporting to image
+#10 exporting manifest sha256:a3d2a7a04b1f5097bac6becff1b7904a58b8d0731f2e2297ec38c650290924da done
+#10 exporting config sha256:1cbcb2298ffb7798189acd6ad32f2411399093957d90409eb12bb82941cb7d76 done
+#10 exporting attestation manifest sha256:1ca8d6e4908cb5c31563958a756dea614126a4336078f4fd6dd1c81650fec483 done
+#10 exporting manifest list sha256:ed802ab6c94b3f021e3c141203238b30e404cac037883995401332441335cc7b done
+#10 pushing layers
+#10 pushing layers 2.0s done
+#10 pushing manifest for docker.io/***/aventus-app:latest@sha256:ed802ab6c94b3f021e3c141203238b30e404cac037883995401332441335cc7b
+#10 pushing manifest for docker.io/***/aventus-app:latest@sha256:ed802ab6c94b3f021e3c141203238b30e404cac037883995401332441335cc7b 1.0s done
+#10 DONE 4.5s
+ImageID
+Digest
+Metadata
+  
+0s
+Post job cleanup.
+Removing temp folder /tmp/docker-build-push-y4FRxO
+(node:2631) [DEP0147] DeprecationWarning: In future versions of Node.js, fs.rmdir(path, { recursive: true }) will be removed. Use fs.rm(path, { recursive: true }) instead
+(Use `node --trace-deprecation ...` to show where the warning was created)
+0s
+Post job cleanup.
+Removing builder
+  /usr/bin/docker buildx rm builder-fcc7e5e1-92d2-4c1e-b491-489e7d7d7f31
+  builder-fcc7e5e1-92d2-4c1e-b491-489e7d7d7f31 removed
+  
+0s
+Post job cleanup.
+/usr/bin/docker logout 
+Removing login credentials for https://index.docker.io/v1/
+1s
+Post job cleanup.
+/usr/bin/git version
+git version 2.43.2
+Temporarily overriding HOME='/home/runner/work/_temp/8a8e3aee-779d-4530-a20f-25279c6fb8ca' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+/usr/bin/git config --global --add safe.directory /home/runner/work/Aventus_Exercise/Aventus_Exercise
+/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+http.https://github.com/.extraheader
+/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+0s
+Cleaning up orphan processes
