@@ -2,7 +2,7 @@
 To Do list:
 Remember to adjust the gitHub Actions workflow script to dynamically generate the lambda_function_payload.zip file from the generate_random_data.py script and ensure it is present in the DEVOPS_Exercise_Statement_2/terraform_setup directory before running Terraform commands, so I may need to add a new step before the Terraform initialization step. This new step will zip the generate_random_data.py file and move the resulting lambda_function_payload.zip into the correct directory(line 17-25)
 
-Please note that the AWS environments where i am currently at are extremelly monitored, therefore I will not be able to test my terraform code.
+Please note that the AWS environments where i am currently at are extremelly monitored, therefore I will not be able to test my terraform code. So ill need to find an alternative way to test the Terraform exercises.
 
 
 Handling errors:
@@ -14,6 +14,66 @@ Possible Workaround:
 Using LocalStack for AWS API Mocking
 # LocalStack provides a fully functional local AWS cloud stack for testing and mocking cloud development. You can run terraform plan against LocalStack to simulate AWS resources without requiring real AWS credentials. Integration into GitHub Actions would require running LocalStack as part of your CI pipeline.
 
+Improvements to be considered
+ there are several improvements and best practices that still needed to be apply to enhance its efficiency, readability, and functionality:
+
+Use Latest Versions:
+
+Update the hashicorp/setup-terraform action to the latest version to take advantage of the latest features and fixes.
+Consider using the latest LocalStack image by specifying image: localstack/localstack:latest unless you have a specific reason to pin to an older version.
+
+
+Cache Terraform Modules and Plugins:
+
+Implement caching for Terraform plugins and modules to speed up the workflow execution.
+
+- name: Cache Terraform Modules
+  uses: actions/cache@v2
+  with:
+    path: |
+      ~/.terraform.d/plugin-cache
+      .terraform
+    key: ${{ runner.os }}-terraform-${{ hashFiles('**/*.tf') }}
+    restore-keys: |
+      ${{ runner.os }}-terraform-
+
+
+Parameterize Common Values:
+
+Use GitHub Actions environment variables for common or repeated values, such as the Terraform version or AWS region, to make the workflow easier to update.
+
+env:
+  TERRAFORM_VERSION: 0.14.9
+  AWS_REGION: us-east-1
+Dynamic Terraform Version:
+
+Instead of hardcoding the Terraform version, consider making it dynamic or configurable through GitHub Actions inputs or environment variables.
+Improve Security Practices:
+
+If using real AWS credentials (not applicable in this case with LocalStack, but relevant for real deployments), ensure they have the least privilege necessary.
+Use GitHub encrypted secrets for sensitive information (already done for AWS credentials, but important to highlight).
+
+
+Include Terraform Validation and Formatting:
+
+Before running terraform plan, include steps to validate (terraform validate) and format (terraform fmt -check) your Terraform configurations to catch common errors and ensure code quality.
+
+- name: Terraform Format Check
+  run: terraform fmt -check
+  working-directory: DEVOPS_Exercise_Statement_2/terraform_setup
+
+- name: Terraform Validate
+  run: terraform validate
+  working-directory: DEVOPS_Exercise_Statement_2/terraform_setup
+
+
+Integration Testing:
+
+After deploying with LocalStack, consider adding steps to run integration tests against my LocalStack services to ensure the infrastructure is configured as expected.
+Cleanup Resources:
+
+After tests, ensure to clean up any resources created within LocalStack to prevent conflicts in subsequent runs.
+By applying these improvements, i would enhance the maintainability, efficiency, and reliability of the CI/CD pipeline for Terraform with LocalStack in GitHub Actions.
 
 
 #######################################################################################################
