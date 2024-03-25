@@ -19,37 +19,37 @@ typing_extensions==4.10.0
 Werkzeug==3.0.1
 
 
-2. Build and run dockerfile and db through the docker-compose
-#   docker-compose up --build
+# 2. Build and run dockerfile and db through the docker-compose
+   * docker-compose up --build
 (reminder: that if the database becomes very heavy to start perhaps using "wait-for-it.sh" script would be ideal. thought i am not using the script, its good practise to use it, so i kept it just in case)
 
  Flask application should be running inside a Docker container, access it via http://localhost:5000
 
 
-3. Testing the /populate and /delete Endpoints
+# 3. Testing the /populate and /delete Endpoints
 
-    3.1.0 testing the /populate endpoint: This endpoint should add data to the database. Since it's a POST request, i'll use:
-    # curl -X POST http://localhost:5000/populate
+   * 3.1.0 testing the /populate endpoint: This endpoint should add data to the database. Since it's a POST request, i'll use:
+    * curl -X POST http://localhost:5000/populate
 
-    3.1.1. POPULATE OUTCOME:
+   * 3.1.1. POPULATE OUTCOME:
     ✔  Ubu  10:26:33 
-    # /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/2.Dockerize_the_Backend: curl -X POST http://localhost:5000/populate
+    * /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/2.Dockerize_the_Backend: curl -X POST http://localhost:5000/populate
 
     {"data":"Qt69DssuZp","message":"Data added successfully"}
     /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/2.Dockerize_the_Backend 
 
-    3.2.0. testing the /delete endpoint: This endpoint should remove data from the database. Being a DELETE request, Ill use:
+    * 3.2.0. testing the /delete endpoint: This endpoint should remove data from the database. Being a DELETE request, Ill use:
 
-    #  curl -X DELETE http://localhost:5000/delete
+    *  curl -X DELETE http://localhost:5000/delete
 
-    3.2.1. DELETE OUTCOME:
+    * 3.2.1. DELETE OUTCOME:
      ✔  Ubu  10:26:38 
-    # /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/2.Dockerize_the_Backend: curl -X DELETE http://localhost:5000/delete
+    * /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/2.Dockerize_the_Backend: curl -X DELETE http://localhost:5000/delete
 
     {"message":"1 rows deleted"}
-    # /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/2.Dockerize_the_Backend:
+    * /mnt/c/Users/Gelson/Downloads/Aventus_Exercise/2.Dockerize_the_Backend:
 
-    3.3. Docker OUTCOME:
+    * 3.3. Docker OUTCOME:
 
     web_1  |  * Running on all addresses (0.0.0.0)
     web_1  |  * Running on http://127.0.0.1:5000
@@ -59,7 +59,7 @@ Werkzeug==3.0.1
     web_1  | 172.21.0.1 - - [21/Mar/2024 10:37:12] "DELETE /delete HTTP/1.1" 200 -
 
 
-4. Analysing hacking counter measures
+# 4. Analysing hacking counter measures
 
     Error Handling in Flask Routes
     * Included  basic error handling for the /delete endpoint, which is good practice to prevent leaking 
