@@ -1,12 +1,12 @@
-Step 1: Scripting
+# Step 1: Scripting
 
-### Python Script (generate_random_data.py)
+* Python Script (generate_random_data.py)
 First, created a Python script named generate_random_data.py. This script will generate random data and can be invoked by an AWS Lambda function.
 
 
-Step 2: Terraform Setup
+# Step 2: Terraform Setup
 
-### AWS Lambda Function ( main.tf )
+* AWS Lambda Function ( main.tf )
 Create a Terraform script to deploy the Lambda function. This script will package the Python script and create a Lambda function. theres also the need to define the IAM role that gives the Lambda function permission to write to S3.
 
 provider "aws" {
@@ -119,7 +119,7 @@ So for testing purposes Replace  with your actual AWS Account ID where the Lambd
 ### Custom Domain for API Gateway
 To configure a custom domain for AWS API Gateway and set up the necessary resources, including domain name, SSL certificate (managed by AWS ACM), and custom domain name resources in API Gateway
 
-Step 1: Request or Import an SSL Certificate in AWS Certificate Manager (ACM)
+# Step 1: Request or Import an SSL Certificate in AWS Certificate Manager (ACM)
 
 resource "aws_acm_certificate" "my_cert" {
   domain_name       = "aventus.com"
@@ -135,7 +135,7 @@ resource "aws_acm_certificate" "my_cert" {
 }
 
 
-Step 2: Configure the Custom Domain in API Gateway
+# Step 2: Configure the Custom Domain in API Gateway
 After obtaining SSL certificate ready and validated, i can configure the custom domain in API Gateway.
 
 resource "aws_api_gateway_domain_name" "my_custom_domain" {
@@ -147,7 +147,7 @@ resource "aws_api_gateway_domain_name" "my_custom_domain" {
   }
 }
 
-Step 3: Set Up Base Path Mapping
+# Step 3: Set Up Base Path Mapping
 unfortunatly running out of time but i would likely want to map my API's deployment stage to the root (or another base path) of my custom domain.
 
 resource "aws_api_gateway_base_path_mapping" "my_base_path_mapping" {
@@ -160,7 +160,7 @@ Replace "prod" with your API's deployment stage name.
 
 
 
-Step 4: Route 53 DNS Configuration for the Custom Domain
+# Step 4: Route 53 DNS Configuration for the Custom Domain
 To route traffic to my custom domain, I'll need a DNS record in Route 53 or your DNS provider.
 
 using AWS Route 53 and my domain is managed there:

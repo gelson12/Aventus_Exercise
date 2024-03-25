@@ -62,29 +62,18 @@ Werkzeug==3.0.1
 # 4. Analysing hacking counter measures
 
     Error Handling in Flask Routes
-    * Included  basic error handling for the /delete endpoint, which is good practice to prevent leaking 
-    internal information about the database structure or server configuration in case of errors. However, 
-    comprehensive error handling across all routes and operations can further improve security by ensuring 
-    that errors are logged to a secure location and that generic error messages are returned to the client
+    * Included  basic error handling for the /delete endpoint, which is good practice to prevent leaking internal information about the database structure or server configuration in case of errors However, comprehensive error handling across all routes and operations can further improve security by ensuring that errors are logged to a secure location and that generic error messages are returned to the client
 
     Security Headers and Other Flask Configurations
-     * still need to considre the importance of set security headers and other Flask configurations to enhance 
-    security packet analysers and SESSION_COOKIE_SECURE, REMEMBER_COOKIE_SECURE, and SESSION_COOKIE_HTTPONLY 
-    flags can help prevent session hijacking and XSS attacks. The Flask-Talisman library can be used to set 
-    these headers easily but i never used it before
+     * still need to considre the importance of set security headers and other Flask configurations to enhance security packet analysers and SESSION_COOKIE_SECURE, REMEMBER_COOKIE_SECURE, and SESSION_COOKIE_HTTPONLY flags can help prevent session hijacking and XSS attacks. The Flask-Talisman library can be used to set these headers easily but i never used it before
 
     Docker Security Practices
-    * Tried as best as could under the time constraints to ensure docker-compose.yml file did not expose more 
-    ports than necessary.
+    * Tried as best as could under the time constraints to ensure docker-compose.yml file did not expose more ports than necessary.
 
-    * Also considering running Docker container as a non-root user can significantly reduce the risk of 
-    system compromises. Also Setting appropriate file system permissions within your Docker container can 
-    prevent unauthorized access
+    * Also considering running Docker container as a non-root user can significantly reduce the risk of system compromises. Also Setting appropriate file system permissions within your Docker container can prevent unauthorized access
 
     * Also realise that there is security risk of hardcoding database credentials in my app.py Flask 
     application, and i know that under local testing i could have leverage environment variables. 
-    Environment variables to provide a secure way to access sensitive information without embedding it 
-    directly in your codebase. and if i manage to finish everything on time ill get back and fix all of these
-    security issues.
+    Environment variables to provide a secure way to access sensitive information without embedding it directly in the codebase. and if i manage to finish everything on time ill get back and fix all of these security issues.
 
 
