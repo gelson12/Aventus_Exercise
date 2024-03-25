@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "aventus-exercise.fullname" . }}
+  name: {{ include "aventus-exercise.fullname" . | quote }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "aventus-exercise.name" . }}
+      app: {{ include "aventus-exercise.fullname" . | quote }}
   template:
     metadata:
       labels:
-        app: {{ include "aventus-exercise.name" . }}
+        app: {{ include "aventus-exercise.fullname" . | quote }}
     spec:
       containers:
-        - name: {{ .Chart.Name }}
+        - name: {{ .Chart.Name | quote }}
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
-          imagePullPolicy: {{ .Values.app.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.app.image.pullPolicy | quote }}
           ports:
             - containerPort: 80

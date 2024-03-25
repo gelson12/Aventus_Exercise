@@ -27,7 +27,7 @@ resource "aws_iam_role" "lambda_execution_role" {
     }],
   })
 
-  # Assuming the Lambda needs to write to an S3 bucket, adding the necessary permissions.
+  # Lambda needs to write to an S3 bucket, adding the necessary permissions.
   inline_policy {
     name = "write_to_s3"
     policy = jsonencode({

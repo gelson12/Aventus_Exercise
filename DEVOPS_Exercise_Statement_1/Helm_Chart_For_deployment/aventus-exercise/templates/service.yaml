@@ -1,25 +1,13 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: {{ include "aventus-exercise.postgres-name" . }}
+  name: {{  include "aventus-exercise.name" .  }}
 spec:
-  replicas: 1
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
   selector:
-    matchLabels:
-      app: {{ include "aventus-exercise.postgres-name" . }}
-  template:
-    metadata:
-      labels:
-        app: {{ include "aventus-exercise.postgres-name" . }}
-    spec:
-      containers:
-        - name: postgres
-          image: "{{ .Values.postgres.image.repository }}:{{ .Values.postgres.image.tag }}"
-          imagePullPolicy: {{ .Values.postgres.image.pullPolicy }}
-          env:
-            - name: POSTGRES_USER
-              value: {{ .Values.postgres.user | b64dec | quote }}
-            - name: POSTGRES_PASSWORD
-              value: {{ .Values.postgres.password | b64dec | quote }}
-          ports:
-            - containerPort: 5432
+    app: {{ include "aventus-exercise.name" . }}

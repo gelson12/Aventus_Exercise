@@ -1,3 +1,5 @@
+fullnameOverride: ""
+
 replicaCount: 1
 
 postgres:
@@ -14,21 +16,44 @@ app:
     repository: gelsonm/aventus-app
     pullPolicy: IfNotPresent
     tag: "latest"
-  
+
 service:
   type: ClusterIP
   port: 80
 
 serviceAccount:
-  create: true  # Set to false if you do not want to create a service account
+  create: true
 
 ingress:
-  enabled: false  # Set to true to enable ingress
-  # Add more ingress configurations as needed
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: app.aventus.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []  # Fill in your TLS details if needed
+
+pgadmin:
+  enabled: true
+  image:
+    repository: dpage/pgadmin4
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 80
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    hosts:
+      - host: pgadmin.aventus.com
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls: []  # Fill in your TLS details if needed
 
 autoscaling:
-  enabled: false  # Change to true to enable autoscaling
-  # You can add more autoscaling configurations as needed, such as minReplicas, maxReplicas, etc.
-
-
-
+  enabled: false
