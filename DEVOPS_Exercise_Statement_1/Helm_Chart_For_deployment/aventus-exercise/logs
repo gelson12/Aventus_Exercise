@@ -113,3 +113,15 @@ deployment.apps/aventus-exercise            1/1     1            1           70s
 NAME                                                   DESIRED   CURRENT   READY   AGE
 replicaset.apps/aventus-exercise-postgres-66c96b5487   1         1         1       70s
 replicaset.apps/aventus-exercise-7b5c6c4fc5            1         1         1       70s
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/DEVOPS_Exercise_Statement_1/Helm_Chart_For_deployment/aventus-exercise$ helm uninstall aventus-exercise --namespace aventus-helmchart-exercise     
+release "aventus-exercise" uninstalled
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/DEVOPS_Exercise_Statement_1/Helm_Chart_For_deployment/aventus-exercise$ kubectl get all -n aventus-helmchart-exercise
+NAME                                    READY   STATUS        RESTARTS        AGE
+pod/aventus-exercise-7b5c6c4fc5-q7cvh   1/1     Terminating   1 (4m34s ago)   2d2h
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/DEVOPS_Exercise_Statement_1/Helm_Chart_For_deployment/aventus-exercise$ kubectl get all -n aventus-helmchart-exercise
+No resources found in aventus-helmchart-exercise namespace.
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/DEVOPS_Exercise_Statement_1/Helm_Chart_For_deployment/aventus-exercise$ helm install aventus-exercise . --namespace aventus-helmchart-exercise --values values.yaml
+Error: INSTALLATION FAILED: template: aventus-exercise/templates/ingress.yaml:30:14: executing "aventus-exercise/templates/ingress.yaml" at <.Values.pgadmin.ingress.enabled>: nil pointer evaluating interface {}.enabled
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/DEVOPS_Exercise_Statement_1/Helm_Chart_For_deployment/aventus-exercise$ helm install aventus-exercise . --namespace aventus-helmchart-exercise --values values.yaml
+Error: INSTALLATION FAILED: template: aventus-exercise/templates/ingress.yaml:19:25: executing "aventus-exercise/templates/ingress.yaml" at <include "aventus-exercise.fullname" .>: error calling include: template: aventus-exercise/templates/_helpers.tpl:14:14: executing "aventus-exercise.fullname" at <.Values.fullnameOverride>: nil pointer evaluating interface {}.fullnameOverride
+kubernetes@user:/mnt/c/Users/Gelson/Downloads/Aventus_Exercise/DEVOPS_Exercise_Statement_1/Helm_Chart_For_deployment/aventus-exercise$

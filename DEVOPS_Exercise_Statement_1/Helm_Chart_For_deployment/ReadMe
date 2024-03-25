@@ -1,1 +1,51 @@
-kindly refer to the log files in "aventus-exercise/logs"
+
+
+
+# To install the Helm chart in the namespace aventus-helmchart-exercise
+* helm install aventus-exercise . --namespace aventus-helmchart-exercise
+
+
+
+# Instructions to access the backend application and PGAdmin
+
+## Accessing the Backend Application
+If you have configured an Ingress for your backend application and it's enabled (ingress.enabled: true in your values.yaml), you'll need the Ingress hostname to access the application. Assuming you do not have a custom domain set up, you can use a local entry in your /etc/hosts file or a DNS service that points to your Kubernetes cluster's Ingress controller IP address.
+
+Get the Ingress IP Address: Find the IP address of your Ingress controller. This varies based on your Kubernetes setup. 
+
+## Find the IP Address of MicroK8s Ingress
+First, you need to find out the IP address where MicroK8s exposes the Ingress. Since MicroK8s packages its own Ingress controller, you can get the IP address through the service that exposes the Ingress controller.
+
+* microk8s kubectl get svc -n ingress
+
+Look for the external IP of the Ingress service. If it's set to localhost or an internal cluster IP, you'll need to use the IP of your WSL instance or the loopback IP 127.0.0.1 for local access.
+
+# 2. Update /etc/hosts in WSL and Windows
+You'll need to add an entry to the /etc/hosts file within WSL and possibly also in Windows to route the hostname(s) defined in your ingress configuration to the Ingress controller's IP address.
+
+In WSL:
+
+* sudo nano /etc/hosts
+Add a line like the following, replacing <Ingress-IP> with the IP address found above, and aventus.com with your hostname:
+
+<Ingress-IP> aventus.com
+
+
+## Accessing PGAdmin
+For accessing PGAdmin, the process is similar. If you enabled an Ingress for PGAdmin (pgadmin.enabled: true and ingress.enabled: true for PGAdmin in your values.yaml), use the configured hostname to access PGAdmin. If you did not configure an Ingress for PGAdmin or want to access it internally, you can use port-forwarding.
+
+Port Forward PGAdmin Pod: First, find the pod name of your PGAdmin deployment:
+
+
+* kubectl get pods -n aventus-helmchart-exercise -l "app=pgadmin"
+Then, forward a local port to the PGAdmin pod:
+
+
+* kubectl port-forward pod/pgadmin-pod-name 8080:80 -n aventus-helmchart-exercise
+Replace pgadmin-pod-name with the actual name of your PGAdmin pod.
+
+* Access PGAdmin: Open your browser and navigate to http://localhost:8080. Use the defaultEmail and defaultPassword you have configured in your values.yaml for PGAdmin to log in.
+
+
+
+For reference to my particular test environment(microk8s on an WSL) kindly refer to the log files in "aventus-exercise/logs"

@@ -48,3 +48,7 @@ jobs:
         AWS_ENDPOINT_URL: http://localhost:4566
 
   # The terraform-apply job remains unchanged from your original script.
+<<<<<<< HEAD
+=======
+        
+>>>>>>> hot-fix-branch

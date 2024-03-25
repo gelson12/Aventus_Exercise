@@ -1,7 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "aventus-exercise.postgres-fullname" . }}
+  name: {{  include "aventus-exercise.name" .  }}
+  labels:
+    {{- include "aventus-exercise.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
@@ -13,13 +15,26 @@ spec:
         app: {{ include "aventus-exercise.postgres-name" . }}
     spec:
       containers:
-        - name: postgres
-          image: "{{ .Values.postgres.image.repository }}:{{ .Values.postgres.image.tag }}"
-          imagePullPolicy: {{ .Values.postgres.image.pullPolicy }}
-          env:
-            - name: POSTGRES_USER
-              value: {{ .Values.postgres.user | b64dec | quote }}
-            - name: POSTGRES_PASSWORD
-              value: {{ .Values.postgres.password | b64dec | quote }}
-          ports:
-            - containerPort: 5432
+      - name: postgres
+        image: "{{ .Values.postgres.image.repository }}:{{ .Values.postgres.image.tag }}"
+        imagePullPolicy: {{ .Values.postgres.image.pullPolicy }}
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: init-script
+          mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: init-script
+        configMap:
+          name: postgres-init-script

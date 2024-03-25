@@ -2,7 +2,11 @@
 To Do list:
 Remember to adjust the gitHub Actions workflow script to dynamically generate the lambda_function_payload.zip file from the generate_random_data.py script and ensure it is present in the DEVOPS_Exercise_Statement_2/terraform_setup directory before running Terraform commands, so I may need to add a new step before the Terraform initialization step. This new step will zip the generate_random_data.py file and move the resulting lambda_function_payload.zip into the correct directory(line 17-25)
 
+<<<<<<< HEAD
 Please note that the AWS environments where i am currently at are extremelly monitored, therefore I will not be able to test my terraform code. So ill need to find an alternative way to test the Terraform exercises.
+=======
+Please note that the AWS environments where i am currently at are extremelly monitored, therefore I will not be able to test my terraform code.
+>>>>>>> hot-fix-branch
 
 
 Handling errors:
@@ -14,6 +18,7 @@ Possible Workaround:
 Using LocalStack for AWS API Mocking
 # LocalStack provides a fully functional local AWS cloud stack for testing and mocking cloud development. You can run terraform plan against LocalStack to simulate AWS resources without requiring real AWS credentials. Integration into GitHub Actions would require running LocalStack as part of your CI pipeline.
 
+<<<<<<< HEAD
 Improvements to be considered
  there are several improvements and best practices that still needed to be apply to enhance its efficiency, readability, and functionality:
 
@@ -74,6 +79,8 @@ Cleanup Resources:
 
 After tests, ensure to clean up any resources created within LocalStack to prevent conflicts in subsequent runs.
 By applying these improvements, i would enhance the maintainability, efficiency, and reliability of the CI/CD pipeline for Terraform with LocalStack in GitHub Actions.
+=======
+>>>>>>> hot-fix-branch
 
 
 #######################################################################################################
