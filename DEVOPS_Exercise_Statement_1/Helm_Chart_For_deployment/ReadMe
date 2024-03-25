@@ -26,9 +26,9 @@ You'll need to add an entry to the /etc/hosts file within WSL and possibly also 
 In WSL:
 
 sudo nano /etc/hosts
-Add a line like the following, replacing <Ingress-IP> with the IP address found above, and example.com with your hostname:
+Add a line like the following, replacing <Ingress-IP> with the IP address found above, and aventus.com with your hostname:
 
-<Ingress-IP> example.com
+<Ingress-IP> aventus.com
 
 
 Accessing PGAdmin
