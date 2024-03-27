@@ -1,0 +1,38 @@
+Instructions
+1. Please solve one of the following exercises explained below (additional bonus for solving both!).
+2. The solution should be available in the candidate personal github repository.
+3. The readme should explain the overall solution as well as any caveat and/or technical detail worth mentioning.
+DEVOPS exercise statement 1
+
+
+1. Create a backend (Python preferred but can be another language) that has 2 endpoints (e.g you can use flask or fast api):
+   a. Populate a psql database with random data
+   b. Delete all data from the database
+2. Create a dockerfile for that backend
+   a. Extra points for github CI pushing the image to ghcr or docker hub
+3. Create a helm chart for the following:
+   a. backend created in step 1.
+   b. Psql database
+       i. This component should create the schema for the first time it runs
+   c. Web based psql UI (e.g PGadmin)
+4. Send clear instructions on how to install the helm chart and how to test the service
+
+
+
+5. Not related to previous exercise:
+   a. Share some terraform code and/or module that is using the AWS provider that was developed by you.
+
+
+DEVOPS exercise statement 2
+1. Create IAC using terraform for:
+   a. Python script that creates a file with random data and uploads it to an s3 bucket
+   b. Script will run within a lambda
+   c. Lambda is triggered via API gateway
+   d. API gateway has a custom domain
+   e. S3 bucket where data is dumped is in another AWS account
+2. Deployment done via terraform + github actions.
+
+
+
+3. Not related to previous exercise:
+   a. Share some helm charts developed by you
